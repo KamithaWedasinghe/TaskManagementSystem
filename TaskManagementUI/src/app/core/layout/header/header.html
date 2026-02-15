@@ -1,0 +1,16 @@
+<header class="header">
+  <div class="header-left">
+    <h1 class="header-title">{{ title }}</h1>
+  </div>
+  
+  <div class="header-right">
+    <div class="profile-info" (click)="toggleDropdown()">
+      <span class="profile-avatar">👤</span>
+      <span class="profile-name">{{ profileName }}</span>
+      <span class="dropdown-arrow">▼</span>
+      <div *ngIf="dropdownOpen()" class="profile-dropdown">
+        <button class="logout-btn" (click)="onLogout($event)">Logout</button>
+      </div>
+    </div>
+  </div>
+</header>

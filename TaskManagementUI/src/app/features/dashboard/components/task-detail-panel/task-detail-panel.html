@@ -1,0 +1,69 @@
+<div class="detail-panel">
+    <div class="panel-header">
+        <h3>
+            @if (selectedTask()) {
+            Task Id {{ selectedTask()?.id }} Details
+            } @else {
+            Add New Task
+            }
+        </h3>
+        @if (selectedTask()) {
+        <button class="btn-delete" (click)="onDeleteTask()" [disabled]="isDeleting">
+            Delete Task
+        </button>
+        }
+    </div>
+
+    <div class="panel-content">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-input" placeholder="Enter task title"
+                [ngModel]="selectedTask() ? formData().title : ''" (ngModelChange)="updateTitle($event)" />
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-textarea" placeholder="Enter task description" rows="4"
+                [ngModel]="selectedTask() ? formData().description : ''"
+                (ngModelChange)="updateDescription($event)"></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Created At</label>
+                @if (selectedTask()) {
+                <input type="text" class="form-input" [value]="selectedTask()?.createdAt | date:'MM/dd/yyyy'"
+                    readonly />
+                } @else {
+                <input type="text" class="form-input" [value]="today | date:'MM/dd/yyyy'" readonly />
+                }
+            </div>
+            <div class="form-group">
+                <label>Due Date</label>
+                <input type="date" class="form-input"
+                    [ngModel]="selectedTask() ? (formData().dueDate ? (formData().dueDate | date:'yyyy-MM-dd') : (selectedTask()?.dueDate ? (selectedTask()?.dueDate | date:'yyyy-MM-dd') : '')) : ''"
+                    (ngModelChange)="updateDueDate($event)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select class="form-select" [ngModel]="formData().status ?? selectedTask()?.status"
+                (ngModelChange)="updateStatus($event)">
+                <option *ngFor="let key of statusKeys; trackBy: trackByStatusKey" [value]="key">
+                    {{ statusLabels[key] }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="panel-actions">
+        <button class="btn-save" (click)="onSaveTask()" [disabled]="isSaving || (selectedTask() && !hasChanges()) || (!selectedTask() && isAddDisabled())">
+            @if (selectedTask()) {
+            Save Changes
+            } @else {
+            Add Task
+            }
+        </button>
+    </div>
+</div>

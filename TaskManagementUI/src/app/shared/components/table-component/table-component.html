@@ -1,0 +1,39 @@
+<div class="card">
+    <p-table [columns]="columns" [value]="data" [rowsPerPageOptions]="[10, 20, 30]" [rows]="10" [paginator]="true">
+        <ng-template #header let-columns>
+            <tr>
+                @for (col of columns; track col) {
+                <th [pSortableColumn]="col.sortable ? col.field : null">
+                    {{ col.header }}
+                    <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
+                    <p-columnFilter
+                        *ngIf="col.filterable"
+                        [field]="col.field"
+                        [type]="col.filterType || 'text'"
+                        [placeholder]="'Filter ' + col.header"
+                        filterOn="input"
+                        [showMenu]="false"
+                        (click)="$event.stopPropagation()"
+                    ></p-columnFilter>
+                </th>
+                }
+            </tr>
+        </ng-template>
+        <ng-template #body let-rowData let-columns="columns">
+            <tr (click)="onRowSelect(rowData)" class="clickable-row"
+                [class.selected]="selectedTask?.id === rowData.id && selectedTask">
+                @for (col of columns; track col) {
+                <td>
+                    @if (col.field === 'dueDate' || col.field === 'createdAt') {
+                    {{ rowData[col.field] | date:'yyyy-MM-dd' }}
+                    } @else if (col.field === 'status') {
+                    {{ statusLabels[(rowData.status + '')] || rowData.status }}
+                    } @else {
+                    {{ rowData[col.field] }}
+                    }
+                </td>
+                }
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

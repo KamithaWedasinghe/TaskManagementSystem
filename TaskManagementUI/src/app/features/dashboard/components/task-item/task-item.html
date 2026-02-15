@@ -1,0 +1,14 @@
+<div class="task-list-header">
+    <button class="btn-add-task" (click)="onAddTaskClick()">+ Add Task</button>
+</div>
+
+<div class="card">
+    <app-table-component
+        [columns]="cols"
+        [data]="taskDetails()"
+        [statusLabels]="statusLabels"
+        [selectedTask]="selectedTask()"
+        (rowSelect)="onRowSelect($event)"
+        (addTask)="onAddTaskClick()"
+    ></app-table-component>
+</div>

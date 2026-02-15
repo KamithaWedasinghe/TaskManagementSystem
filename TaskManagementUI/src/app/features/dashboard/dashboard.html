@@ -1,0 +1,14 @@
+<div class="dashboard-container">
+  <app-task-item 
+    class="task-list-section"
+    (taskSelected)="onTaskSelected($event)"
+    [selectedTask]="selectedTask()"
+    (addTask)="onAddTask()"
+  ></app-task-item>
+  <app-task-detail-panel 
+    class="task-details-section"
+    [selectedTask]="selectedTask()"
+    (taskDeleted)="onTaskDeleted($event)"
+    (taskUpdated)="onTaskUpdated($event)"
+  ></app-task-detail-panel>
+</div>
