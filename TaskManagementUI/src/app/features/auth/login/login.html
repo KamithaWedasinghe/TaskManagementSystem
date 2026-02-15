@@ -1,17 +1,18 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" [(ngModel)]="username" required class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password" required class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
-  </form>
-  <div *ngIf="loginError()" class="error-message">
-    Invalid username or password.
+<div class="login-bg">
+  <div class="login-card">
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <h1 class="login-title">Task Management System</h1>
+      <p class="login-subtitle">Sign in to your account</p>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" [(ngModel)]="username" required placeholder="Enter your username" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" [(ngModel)]="password" required placeholder="Enter your password" class="form-control" />
+      </div>
+      <button class="login-btn" type="submit" [disabled]="!loginForm.form.valid">Sign In</button>
+      <div *ngIf="loginError()" class="error-message">Invalid username or password.</div>
+    </form>
   </div>
 </div>
