@@ -8,9 +8,11 @@
       <span class="profile-avatar">👤</span>
       <span class="profile-name">{{ profileName }}</span>
       <span class="dropdown-arrow">▼</span>
-      <div *ngIf="dropdownOpen()" class="profile-dropdown">
-        <button class="logout-btn" (click)="onLogout($event)">Logout</button>
-      </div>
+      @if (dropdownOpen()) {
+        <div class="profile-dropdown">
+          <button class="logout-btn" (click)="onLogout($event)">Logout</button>
+        </div>
+      }
     </div>
   </div>
 </header>
