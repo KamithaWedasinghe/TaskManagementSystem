@@ -196,10 +196,6 @@ export class TaskDetailPanel {
     this.formData.update(v => ({ ...v, status: parseInt(value) }));
   }
 
-  trackByStatusKey(index: number, key: string) {
-    return key;
-  }
-
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

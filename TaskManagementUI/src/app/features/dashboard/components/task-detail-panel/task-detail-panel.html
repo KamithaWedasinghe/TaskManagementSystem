@@ -50,9 +50,11 @@
             <label>Status</label>
             <select class="form-select" [ngModel]="formData().status ?? selectedTask()?.status"
                 (ngModelChange)="updateStatus($event)">
-                <option *ngFor="let key of statusKeys; trackBy: trackByStatusKey" [value]="key">
+                @for (key of statusKeys; track key) {
+                <option [value]="key">
                     {{ statusLabels[key] }}
                 </option>
+                }
             </select>
         </div>
     </div>
