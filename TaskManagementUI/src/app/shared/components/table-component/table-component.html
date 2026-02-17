@@ -5,16 +5,14 @@
                 @for (col of columns; track col) {
                 <th [pSortableColumn]="col.sortable ? col.field : null">
                     {{ col.header }}
-                    <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
-                    <p-columnFilter
-                        *ngIf="col.filterable"
-                        [field]="col.field"
-                        [type]="col.filterType || 'text'"
-                        [placeholder]="'Filter ' + col.header"
-                        filterOn="input"
-                        [showMenu]="false"
-                        (click)="$event.stopPropagation()"
-                    ></p-columnFilter>
+                    @if (col.sortable) {
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                    }
+                    @if (col.filterable) {
+                    <p-columnFilter [field]="col.field" [type]="col.filterType || 'text'"
+                        [placeholder]="'Filter ' + col.header" filterOn="input" [showMenu]="false"
+                        (click)="$event.stopPropagation()"></p-columnFilter>
+                    }
                 </th>
                 }
             </tr>

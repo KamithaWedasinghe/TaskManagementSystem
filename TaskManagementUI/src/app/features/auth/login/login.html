@@ -12,7 +12,9 @@
         <input id="password" type="password" name="password" [(ngModel)]="password" required placeholder="Enter your password" class="form-control" />
       </div>
       <button class="login-btn" type="submit" [disabled]="!loginForm.form.valid">Sign In</button>
-      <div *ngIf="loginError()" class="error-message">Invalid username or password.</div>
+      @if (loginError()) {
+        <div class="error-message">Invalid username or password.</div>
+      }
     </form>
   </div>
 </div>
