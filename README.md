@@ -46,6 +46,6 @@ The API is protected using Basic Authentication.
 
 Username: admin
 
-Password: password123
+Password: admin123
 
 All requests from the Angular frontend include the encoded Authorization header via a secure service layer.
