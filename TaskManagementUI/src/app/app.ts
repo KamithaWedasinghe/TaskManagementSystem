@@ -14,6 +14,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 export class App {
   private router = inject(Router);
   isLoginPage() {
-    return this.router.url === '/login';
+    return this.router.url === '/';
+    // return this.router.url === '/login';
   }
 }

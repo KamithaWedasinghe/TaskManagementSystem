@@ -24,7 +24,7 @@ export class Header {
   onLogout(event: Event) {
     event.stopPropagation();
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
     this.dropdownOpen.set(false);
   }
 }
